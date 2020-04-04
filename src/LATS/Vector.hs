@@ -28,11 +28,11 @@ type Vector i = Indexed L.Vector i
 
 --------------------------------------------------------------------------------
 
-type instance G.Mutable (Vector i) = MVector
+type instance G.Mutable (Vector i) = MVector i
 
-instance (HasIndexed L.Vector, L.Storable a) => G.Vector (Vector i) a where
-  basicUnsafeFreeze v = mkIx <$> G.basicUnsafeFreeze v
-  basicUnsafeThaw = G.basicUnsafeThaw . unIx
+instance L.Storable a => G.Vector (Vector i) a where
+  basicUnsafeFreeze (MVector v) = mkIx <$> G.basicUnsafeFreeze v
+  basicUnsafeThaw v = MVector <$> G.basicUnsafeThaw (unIx v)
   basicLength = G.basicLength . unIx
   basicUnsafeSlice i j = mkIx . G.basicUnsafeSlice i j . unIx
   basicUnsafeIndexM v i = G.basicUnsafeIndexM (unIx v) i
