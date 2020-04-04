@@ -40,11 +40,11 @@ library
     LATS
 
   build-depends:
-    base >= 4.7 && < 5 ,
-    constraint-classes >= 0.6 && < 0.7,
-    hmatrix >= 0.17 && < 0.19,
-    semigroups >= 0.18 && < 0.19,
-    vector >= 0.11 && < 0.13,
+    base,
+    constraint-classes >= 0.6,
+    hmatrix >= 0.17,
+    semigroups >= 0.18,
+    vector >= 0.11,
     newtype,
     phantom-index
 
